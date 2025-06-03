@@ -155,11 +155,14 @@ section {
     text-decoration: none;
     margin-left: 8px;
     transition: color 0.2s;
+    border-bottom: 1px dotted #1976d2;
+    padding-bottom: 2px;
 }
 
 .projects li a:hover {
     color: #e67e22;
     text-decoration: underline;
+    border-bottom: 1px solid #e67e22;
 }
 
 .projects li:hover {
@@ -167,6 +170,56 @@ section {
     background: #fffbe7;
     border-color: #fbc02d;
     transform: translateY(-2px) scale(1.01);
+}
+
+/* Collapsible Code Blocks */
+details {
+    margin-top: 10px;
+    margin-bottom: 8px;
+    background: #f5f7fa;
+    border-radius: 10px;
+    border: 1.5px solid #d1d8e0;
+    padding: 6px 10px 6px 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+details[open] {
+    background: #eef6ff;
+    border-color: #90caf9;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #1976d2;
+    outline: none;
+    margin-bottom: 6px;
+    font-size: 1rem;
+    user-select: none;
+}
+
+details[open] summary {
+    color: #e67e22;
+}
+
+pre, code {
+    font-family: 'Fira Mono', 'Consolas', 'Courier New', monospace;
+    font-size: 0.97em;
+    background: #f3f3f3;
+    color: #222;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 6px 0 0 0;
+    overflow-x: auto;
+    line-height: 1.45;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+pre {
+    background: #f3f3f3;
+    border: 1px solid #e0e0e0;
+    max-height: 400px;
+    overflow: auto;
 }
 
 /* Other Projects Section */
@@ -252,5 +305,9 @@ footer {
     }
     section {
         padding: 10px 7px;
+    }
+    pre, code {
+        font-size: 0.88em;
+        padding: 7px;
     }
 }
