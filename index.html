@@ -217,5 +217,129 @@ def draw_scene(t):
     win21_y = house2_y + house2_height/2
     jump_to(t, win21_x, win21_y)
     t.setheading(0)
+    draw_square(t, window2_size, fill_color="lightblue")
+    # Right window
+    win22_x = house2_x + house2_width - window2_size - 20
+    win22_y = win21_y
+    jump_to(t, win22_x, win22_y)
+    t.setheading(0)
+    draw_square(t, window2_size, fill_color="lightblue")
+
+    # --- Draw Sun (Yellow Circle) ---
+    sun_radius = 40
+    sun_x = 180
+    sun_y = 130
+    jump_to(t, sun_x, sun_y)
+    t.setheading(0)
+    draw_circle(t, sun_radius, fill_color="yellow")
+
+    # --- Draw Clouds (White Ovals) ---
+    # Cloud 1
+    jump_to(t, -220, 170)
+    t.setheading(0)
+    t.fillcolor("white")
+    t.begin_fill()
+    for _ in range(2):
+        t.circle(30,90)
+        t.circle(30//2,90)
+    t.end_fill()
+    # Cloud 2
+    jump_to(t, -160, 140)
+    t.setheading(0)
+    t.fillcolor("white")
+    t.begin_fill()
+    for _ in range(2):
+        t.circle(22,90)
+        t.circle(22//2,90)
+    t.end_fill()
+
+    # --- Draw Tree 1 (Left side, away from houses and clouds) ---
+    draw_tree(t, x=-300, y=-120, trunk_width=20, trunk_height=60, foliage_radius=32, trunk_color="sienna", foliage_color="forestgreen")
+
+    # --- Draw Tree 2 (Far right, away from houses and sun) ---
+    draw_tree(t, x=320, y=-120, trunk_width=20, trunk_height=60, foliage_radius=32, trunk_color="sienna", foliage_color="forestgreen")
+
+def main():
+    t, screen = setup_turtle()
+    draw_scene(t)
+    screen.mainloop()
+
+if __name__ == "__main__":
+    main()
+                        </code></pre>
+                    </details>
+                    <a href="https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/56587565/c684c6c1-03ef-4e6c-a92a-8f834cbf5a25/Project5finished.py" target="_blank">[Download Code]</a>
+                </li>
+                <li>
+                    <strong>Project 6: Text Analysis with SpaCy</strong> (2025)<br>
+                    <em>Python, Jupyter Notebook, NLP</em><br>
+                    Utilized the SpaCy library for natural language processing tasks such as tokenization, part-of-speech tagging, and named entity recognition. Gained hands-on experience with modern NLP tools.<br>
+                    <details>
+                        <summary>View Code Inline</summary>
+                        <pre style="max-height:400px;overflow:auto;"><code>
+# Text Analysis with SpaCy
+
+import spacy
+
+# Load the English NLP model
+nlp = spacy.load("en_core_web_sm")
+
+# Example text
+text = "SpaCy is an open-source library for advanced Natural Language Processing in Python."
+
+# Process the text
+doc = nlp(text)
+
+# Tokenization
+print("Tokens:")
+for token in doc:
+    print(token.text)
+
+# Part-of-speech tagging
+print("\nPart-of-speech tags:")
+for token in doc:
+    print(f"{token.text}: {token.pos_}")
+
+# Named Entity Recognition
+print("\nNamed Entities:")
+for ent in doc.ents:
+    print(f"{ent.text} ({ent.label_})")
+                        </code></pre>
+                    </details>
+                    <a href="https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/56587565/c4fcf5bc-1a61-4428-9808-d7a0b0eb1f53/Copy_of_CS110_Project6_Part2.ipynb" target="_blank">[Download Notebook]</a>
+                </li>
+                <li>
+                    <strong>Project 7: Data Exploration using Pandas, Matplotlib, and Seaborn</strong> (2025)<br>
+                    <em>Python, Jupyter Notebook, Data Analysis</em><br>
+                    Explored and visualized real-world datasets using Pandas for data manipulation and Matplotlib/Seaborn for visualization. Developed skills in data cleaning, exploratory data analysis, and creating insightful charts.<br>
+                    <em>[Link coming soon]</em>
+                </li>
+                <li>
+                    <strong>Project 8: Vectorization in Python</strong> (2025)<br>
+                    <em>Python, NumPy</em><br>
+                    Implemented vectorization techniques with NumPy to optimize numerical computations and data processing, significantly improving code performance and efficiency.<br>
+                    <em>[Link coming soon]</em>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Other Projects</h2>
+            <ul>
+                <li>Business Analysis Project (2023)</li>
+                <li>Web Development Assignment (2024)</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Cooper Grossman. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
 
 
