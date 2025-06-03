@@ -56,7 +56,7 @@
             </div>
         </section>
 
-        <!-- New Highlighted Projects Section -->
+        <!-- Highlighted Projects Section -->
         <section class="projects">
             <h2>Highlighted Projects</h2>
             <ul>
@@ -64,47 +64,158 @@
                     <strong>Project 5: Refactored Turtle Graphics</strong> (2025)<br>
                     <em>Python, Turtle Graphics</em><br>
                     Refactored and modularized a Turtle Graphics scene, featuring two distinct houses and two trees, ensuring no overlap and clean code structure. Improved code reuse, clarity, and organization.<br>
-                    <a href="https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/56587565/c684c6c1-03ef-4e6c-a92a-8f834cbf5a25/Project5finished.py" target="_blank">[View Code]</a>
-                </li>
-                <li>
-                    <strong>Project 6: Text Analysis with SpaCy</strong> (2025)<br>
-                    <em>Python, Jupyter Notebook, NLP</em><br>
-                    Utilized the SpaCy library for natural language processing tasks such as tokenization, part-of-speech tagging, and named entity recognition. Gained hands-on experience with modern NLP tools.<br>
-                    <a href="https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/56587565/c4fcf5bc-1a61-4428-9808-d7a0b0eb1f53/Copy_of_CS110_Project6_Part2.ipynb" target="_blank">[View Notebook]</a>
-                </li>
-                <li>
-                    <strong>Project 7: Data Exploration using Pandas, Matplotlib, and Seaborn</strong> (2025)<br>
-                    <em>Python, Jupyter Notebook, Data Analysis</em><br>
-                    Explored and visualized real-world datasets using Pandas for data manipulation and Matplotlib/Seaborn for visualization. Developed skills in data cleaning, exploratory data analysis, and creating insightful charts.<br>
-                    <!-- Add your file link here when available -->
-                    <em>[Link coming soon]</em>
-                </li>
-                <li>
-                    <strong>Project 8: Vectorization in Python</strong> (2025)<br>
-                    <em>Python, NumPy</em><br>
-                    Implemented vectorization techniques with NumPy to optimize numerical computations and data processing, significantly improving code performance and efficiency.<br>
-                    <!-- Add your file link here when available -->
-                    <em>[Link coming soon]</em>
-                </li>
-            </ul>
-        </section>
+                    <details>
+                        <summary>View Code Inline</summary>
+                        <pre style="max-height:400px;overflow:auto;"><code>
+# Cooper Grossman
+# Project Variation #1
+# Improvements:
+# - Refactored code for modularity and reuse
+# - Added exactly two houses and two trees that dont overlap
+# - Clear structure of what each function does
 
-        <section>
-            <h2>Other Projects</h2>
-            <ul>
-                <li>Business Analysis Project (2023)</li>
-                <li>Web Development Assignment (2024)</li>
-            </ul>
-        </section>
-    </main>
+import turtle
+import math
 
-    <footer>
-        <p>&copy; <span id="year"></span> Cooper Grossman. All rights reserved.</p>
-    </footer>
+def setup_turtle():
+    """Initialize turtle with standard settings"""
+    t = turtle.Turtle()
+    t.speed(0) # Fastest speed
+    screen = turtle.Screen()
+    screen.title("Turtle Graphics Assignment")
+    return t, screen
 
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-</body>
-</html>
+def draw_rectangle(t, width, height, fill_color=None):
+    """Draw a rectangle with optional fill"""
+    if fill_color:
+        t.fillcolor(fill_color)
+        t.begin_fill()
+    for _ in range(2):
+        t.forward(width)
+        t.left(90)
+        t.forward(height)
+        t.left(90)
+    if fill_color:
+        t.end_fill()
+
+def draw_square(t, size, fill_color=None):
+    """Draw a square with optional fill"""
+    draw_rectangle(t, size, size, fill_color)
+
+def draw_triangle(t, width, height, fill_color=None):
+    """Draw an isosceles triangle for the roof"""
+    if fill_color:
+        t.fillcolor(fill_color)
+        t.begin_fill()
+    t.forward(width)
+    t.left(135)
+    t.forward(math.sqrt(2)*(width/2))
+    t.left(90)
+    t.forward(math.sqrt(2)*(width/2))
+    t.left(135)
+    if fill_color:
+        t.end_fill()
+
+def draw_circle(t, radius, fill_color=None):
+    """Draw a circle with optional fill"""
+    if fill_color:
+        t.fillcolor(fill_color)
+        t.begin_fill()
+    t.circle(radius)
+    if fill_color:
+        t.end_fill()
+
+def jump_to(t, x, y):
+    """Move turtle without drawing"""
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+
+def draw_tree(t, x, y, trunk_width=20, trunk_height=60, foliage_radius=35, trunk_color="sienna", foliage_color="forestgreen"):
+    """Draw a simple tree at (x, y) with the foliage circle touching the trunk top."""
+    # Draw trunk
+    jump_to(t, x, y)
+    t.setheading(0)
+    draw_rectangle(t, trunk_width, trunk_height, fill_color=trunk_color)
+    # Draw foliage so it touches the trunk
+    foliage_x = x + trunk_width / 2
+    foliage_y = y + trunk_height
+    jump_to(t, foliage_x, foliage_y - foliage_radius) # Move to bottom of foliage circle
+    t.setheading(0)
+    draw_circle(t, foliage_radius, fill_color=foliage_color)
+
+def draw_scene(t):
+    # Set background color
+    screen = t.getscreen()
+    screen.bgcolor("skyblue")
+
+    # --- Draw House 1 (Red Rectangle) ---
+    house_width = 200
+    house_height = 120
+    house_x = -100
+    house_y = -100
+    jump_to(t, house_x, house_y)
+    t.setheading(0)
+    draw_rectangle(t, house_width, house_height, fill_color="red")
+
+    # --- Draw Roof 1 (Brown Triangle) ---
+    jump_to(t, house_x, house_y + house_height)
+    t.setheading(0)
+    draw_triangle(t, house_width, 60, fill_color="saddlebrown")
+
+    # --- Draw Door 1 (Yellow Rectangle) ---
+    door_width = 40
+    door_height = 60
+    door_x = house_x + house_width/2 - door_width/2
+    door_y = house_y
+    jump_to(t, door_x, door_y)
+    t.setheading(0)
+    draw_rectangle(t, door_width, door_height, fill_color="yellow")
+
+    # --- Draw Windows 1 (Blue Squares) ---
+    window_size = 35
+    # Left window
+    win1_x = house_x + 30
+    win1_y = house_y + house_height/2
+    jump_to(t, win1_x, win1_y)
+    t.setheading(0)
+    draw_square(t, window_size, fill_color="deepskyblue")
+    # Right window
+    win2_x = house_x + house_width - window_size - 30
+    win2_y = win1_y
+    jump_to(t, win2_x, win2_y)
+    t.setheading(0)
+    draw_square(t, window_size, fill_color="deepskyblue")
+
+    # --- Draw House 2 (Orange) ---
+    house2_width = 150
+    house2_height = 90
+    house2_x = 120
+    house2_y = -90
+    jump_to(t, house2_x, house2_y)
+    t.setheading(0)
+    draw_rectangle(t, house2_width, house2_height, fill_color="orange")
+
+    # --- Draw Roof 2 (Dark Red Triangle) ---
+    jump_to(t, house2_x, house2_y + house2_height)
+    t.setheading(0)
+    draw_triangle(t, house2_width, 45, fill_color="maroon")
+
+    # --- Draw Door 2 (Brown Rectangle) ---
+    door2_width = 32
+    door2_height = 45
+    door2_x = house2_x + house2_width/2 - door2_width/2
+    door2_y = house2_y
+    jump_to(t, door2_x, door2_y)
+    t.setheading(0)
+    draw_rectangle(t, door2_width, door2_height, fill_color="brown")
+
+    # --- Draw Windows 2 (Light Blue Squares) ---
+    window2_size = 28
+    # Left window
+    win21_x = house2_x + 20
+    win21_y = house2_y + house2_height/2
+    jump_to(t, win21_x, win21_y)
+    t.setheading(0)
+
 
